@@ -1,31 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-  let timerInterval;
-  let seconds = 0;
-  let running = false;
+// timer.js
 
-  function updateTime() {
-    seconds++;
-    document.getElementById('time').innerText = formatTime(seconds);
-  }
+// Select the elements from the DOM
+const timerDisplay = document.getElementById('timer');
+const startButton = document.getElementById('startButton');
+const stopButton = document.getElementById('stopButton');
 
-  function toggleTimer() {
-    if (!running) {
-      running = true;
-      timerInterval = setInterval(updateTime, 1000);
-      document.getElementById('startStopButton').innerText = 'Stop';
-    } else {
-      running = false;
-      clearInterval(timerInterval);
-      document.getElementById('startStopButton').innerText = 'Start';
-    }
-  }
+// Timer variables
+let startTime = 0;
+let elapsedTime = 0;
+let timerInterval;
 
-  function formatTime(totalSeconds) {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return [hours, minutes, seconds].map(v => v < 10 ? "0" + v : v).join(":");
-  }
+// Function to update the timer display
+function updateTime() {
+  // Calculate the time elapsed
+  elapsedTime = Date.now() - startTime;
 
-  document.getElementById('startStopButton').addEventListener('click', toggleTimer);
-});
+  // Convert milliseconds to minutes and seconds
+  let seconds = Math.floor((elapsedTime / 1000) % 60);
+  let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+
+  // Add leading zeros if necessary
+  seconds = (seconds < 10) ? '0' + seconds : seconds;
+  minutes = (minutes < 10) ? '0' + minutes : minutes;
+
+  // Update the display
+  timerDisplay.textContent = `${minutes}:${seconds}`;
+}
+
+// Start the timer
+function startTimer() {
+  startTime = Date.now() - elapsedTime;
+  timerInterval = setInterval(updateTime, 1000);
+  startButton.disabled = true;
+}
+
+// Stop the timer
+function stopTimer() {
+  clearInterval(timerInterval);
+  startButton.disabled = false;
+}
+
+// Event listeners for the buttons
+startButton.addEventListener('click', startTimer);
+stopButton.addEventListener('click', stopTimer);
+
+// Initialize the timer display
+updateTime();
