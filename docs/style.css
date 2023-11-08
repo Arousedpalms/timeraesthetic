@@ -1,0 +1,18 @@
+body {
+    font-family: 'Playfair Display', serif;
+    color: #a68a64;
+    background-color: #3b3a36;
+}
+
+.timer {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.progress-bar {
+    background-color: #a68a64;
+    height: 20px;
+    border-radius: 5px;
+}
