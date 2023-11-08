@@ -6,6 +6,7 @@ const resetBtn = document.getElementById('reset-btn');
 const setTimerBtn = document.getElementById('set-timer-btn');
 const customHours = document.getElementById('custom-hours');
 const customMinutes = document.getElementById('custom-minutes');
+const alarmSound = document.getElementById('love-alarm-sound'); // Get the audio element
 
 let countdown;
 let timerSeconds = 0; // Timer set for 0 seconds initially
@@ -22,8 +23,10 @@ function timer(seconds) {
   countdown = setInterval(() => {
     const secondsLeft = Math.round((then - Date.now()) / 1000);
 
+    // When timer hits zero
     if (secondsLeft < 0) {
       clearInterval(countdown);
+      alarmSound.play(); // Play the alarm sound
       return;
     }
 
@@ -54,6 +57,8 @@ stopBtn.addEventListener('click', () => {
 // Reset Timer
 resetBtn.addEventListener('click', () => {
   clearInterval(countdown);
+  alarmSound.pause(); // Stop the alarm sound if playing
+  alarmSound.currentTime = 0; // Reset the audio file to the start
   timerDisplay.textContent = '00:00:00';
   document.title = 'Timer Reset';
   timerSeconds = 0;
