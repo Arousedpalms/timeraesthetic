@@ -4,26 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Custom Timer</title>
-<link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
+<link rel="stylesheet" href="style.css"> <!-- Make sure the path is correct -->
 </head>
 <body>
 
 <h1>Custom Timer</h1>
 
-<div class="progress-bar">
-  <div id="year-progress" class="progress-bar-inner" style="width: 0%">Year: 0%</div>
-</div>
-<div class="progress-bar">
-  <div id="month-progress" class="progress-bar-inner" style="width: 0%">Month: 0%</div>
-</div>
-<div class="progress-bar">
-  <div id="week-progress" class="progress-bar-inner" style="width: 0%">Week: 0%</div>
-</div>
-<div class="progress-bar">
-  <div id="day-progress" class="progress-bar-inner" style="width: 0%">Day: 0%</div>
-</div>
+<div id="timer-display">00:00:00</div> <!-- Timer display -->
+
+<button id="start-button">Start</button> <!-- Start button -->
+<button id="stop-button">Stop</button> <!-- Stop button -->
 
 <script src="timer.js"></script>
 </body>
 </html>
+
 
