@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion Clock Widget</title>
+    <title>Digital Timer</title>
     <link rel="stylesheet" href="style.css">
-    <script src="clock.js" defer></script>
 </head>
 <body>
-    <div id="clock-container">
-        <div id="timer-display">00:10:00</div>
-        <div id="timer-controls">
-            <button id="start-timer-btn">Start</button>
-            <button id="pause-timer-btn">Pause</button>
-            <button id="reset-timer-btn">Reset</button>
-        </div>
-        <div id="set-timer">
-            <input type="text" id="minutes-input" placeholder="Minutes">
-            <input type="text" id="seconds-input" placeholder="Seconds">
-            <button id="set-timer-btn">Set Timer</button>
-        </div>
+
+<div id="clock-container">
+    <div id="timer-display">
+        <!-- Timer display will be updated by JavaScript -->
+        00:00:00
     </div>
+    
+    <div id="timer-controls">
+        <!-- Timer control buttons -->
+        <button id="start-btn">Start</button>
+        <button id="stop-btn">Stop</button>
+        <button id="reset-btn">Reset</button>
+    </div>
+
+    <div id="set-timer">
+        <!-- Input field for setting custom timer -->
+        <input type="text" id="custom-timer" placeholder="Enter time in seconds">
+        <button id="set-timer-btn">Set Timer</button>
+    </div>
+</div>
+
+<script src="clock.js"></script>
 </body>
 </html>
