@@ -6,9 +6,9 @@
 }
 
 body {
-    font-family: 'Times New Roman', Times, serif; /* This font is similar to the one used in newspapers */
-    background-color: #f5f5f5; /* A neutral background */
-    color: #333; /* Dark text for high contrast */
+    font-family: 'Arial', sans-serif; /* A clean, sans-serif font that matches the style */
+    background-color: #333; /* Dark background to match the calendar */
+    color: #fff; /* Light text for contrast */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,10 +18,10 @@ body {
 
 #clock-container {
     text-align: center;
-    background-color: #fff;
+    background-color: #444; /* Dark background similar to the calendar */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners like the calendar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
     width: 100%;
     max-width: 400px;
 }
@@ -32,24 +32,24 @@ body {
 
 #timer {
     font-size: 3em;
-    color: #5D534A; /* Color from the image palette */
+    color: #eee; /* Light text to stand out against the dark background */
 }
 
 #timer-controls button,
 #set-timer button {
-    background-color: #D3C1AE; /* Lighter tone from the image palette */
-    color: white;
-    border: none;
+    background-color: #555; /* Slightly lighter than container for contrast */
+    color: #ddd; /* Light text */
+    border: 1px solid #666; /* Subtle border */
     padding: 10px 20px;
     margin: 5px;
-    border-radius: 5px;
+    border-radius: 5px; /* Rounded corners */
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 #timer-controls button:hover,
 #set-timer button:hover {
-    background-color: #B29F91; /* Darker tone for the hover state */
+    background-color: #666; /* A little lighter on hover */
 }
 
 #set-timer {
@@ -58,8 +58,10 @@ body {
 
 #set-timer input {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #666; /* Match the button border */
+    background-color: #555; /* Match the button background */
     border-radius: 5px;
+    color: #ddd; /* Light text */
     margin-right: 5px;
 }
 
