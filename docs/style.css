@@ -1,18 +1,113 @@
-body {
-    font-family: 'Playfair Display', serif;
-    color: #a68a64;
-    background-color: #3b3a36;
+/* General reset for some element styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.timer {
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
+body {
+    font-family: 'Times New Roman', Times, serif; /* Assuming a classic newspaper-like font */
+    background-color: #1a1a1a; /* Dark background */
+    color: #fff; /* White text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.widget-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #333; /* Slightly lighter shade for the widget background */
+}
+
+.timer-display {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #555; /* Darker background for progress bar */
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .progress-bar {
-    background-color: #a68a64;
     height: 20px;
+    background-color: #f0ad4e; /* Progress bar color taken from Notion's theme */
+    width: 0%;
     border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+.time-input,
+.timer-btn,
+.settings-menu,
+.time-selector {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid #f0ad4e; /* Border color to match progress bar */
+    border-radius: 5px;
+    background-color: #222; /* Dark background for inputs and buttons */
+    color: #fff; /* White text for visibility */
+    font-size: 1em;
+}
+
+.time-input::placeholder {
+    color: #ddd; /* Lighter color for placeholder text */
+}
+
+.timer-btn:hover,
+.presetTimer:hover {
+    background-color: #f0ad4e; /* Highlight button on hover with Notion's theme color */
+    cursor: pointer;
+}
+
+.presetTimer {
+    padding: 5px 10px;
+    display: inline-block;
+    margin: 0 5px;
+    background-color: transparent;
+    border: 1px solid #f0ad4e;
+}
+
+/* Disabling the reset button visually */
+#resetButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Style for settings menu */
+.settings-menu {
+    width: 200px; /* Set a fixed width */
+    display: block; /* To take full width */
+    margin: 10px auto; /* Centering it */
+}
+
+/* Time selectors styling */
+.time-selectors {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.time-selector {
+    width: 60px; /* Fixed width for uniformity */
+    margin: 0 5px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .timer-display {
+        font-size: 2em;
+    }
+
+    .progress-bar-container,
+    .time-input,
+    .settings-menu,
+    .time-selector {
+        width: 90%; /* Adjust width for smaller screens */
+    }
 }
