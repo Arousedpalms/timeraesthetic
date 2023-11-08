@@ -1,20 +1,37 @@
-// timer.js
-let timer = null;
-let elapsedTime = 0;
+let timerInterval;
+let seconds = 0;
+let running = false;
 
-function updateTimeDisplay() {
-  const seconds = Math.floor(elapsedTime % 60);
-  const minutes = Math.floor((elapsedTime / 60) % 60);
-  const hours = Math.floor(elapsedTime / 3600);
-  
-  document.getElementById('timer-display').textContent = 
-    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+// This function will be called every second when the timer is running
+function updateTime() {
+  seconds++;
+  document.getElementById('time').innerText = formatTime(seconds);
 }
 
-document.getElementById('start-button').addEventListener('click', () => {
-  if (timer === null) {
-    timer = setInterval(() => {
-      elapsedTime++;
-      updateTimeDisplay();
-    }, 1000);
- 
+// This function starts or stops the timer based on its current state
+function toggleTimer() {
+  if (!running) {
+    running = true;
+    timerInterval = setInterval(updateTime, 1000); // start the timer
+    document.getElementById('startStopButton').innerText = 'Stop';
+  } else {
+    running = false;
+    clearInterval(timerInterval); // stop the timer
+    document.getElementById('startStopButton').innerText = 'Start';
+  }
+}
+
+// Converts the time from seconds to a hh:mm:ss format
+function formatTime(totalSeconds) {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  // Pad the numbers to two digits with leading zeros
+  return [hours, minutes, seconds]
+    .map(v => v < 10 ? "0" + v : v)
+    .join(":");
+}
+
+// Attach the event to the button for starting/stopping the timer
+document.getElementById('startStopButton').addEventListener('click', toggleTimer);
