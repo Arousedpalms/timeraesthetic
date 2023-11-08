@@ -1,11 +1,10 @@
 // Get the elements from the DOM
-const timerDisplay = document.getElementById('timer');
-const startBtn = document.getElementById('start-timer');
-const stopBtn = document.getElementById('stop-timer');
-const resetBtn = document.getElementById('reset-timer');
+const timerDisplay = document.getElementById('timer-display');
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const resetBtn = document.getElementById('reset-btn');
 const setTimerBtn = document.getElementById('set-timer-btn');
-const setMinutes = document.getElementById('set-minutes');
-const alarmSound = document.getElementById('alarmSound');
+const customTimer = document.getElementById('custom-timer');
 
 let countdown;
 let timerSeconds = 0; // Timer set for 0 seconds initially
@@ -43,17 +42,17 @@ function displayTimeLeft(seconds) {
 }
 
 function playAlarm() {
-  alarmSound.play();
-}
-
-function stopAlarm() {
-  alarmSound.pause();
-  alarmSound.currentTime = 0; // Rewind to start
+  // Ensure your HTML includes an audio element with the ID 'alarmSound'
+  const alarmSound = document.getElementById('alarmSound');
+  if (alarmSound) {
+    alarmSound.play();
+  }
 }
 
 // Start the timer
 startBtn.addEventListener('click', () => {
-  const seconds = parseInt(setMinutes.value) * 60 || timerSeconds;
+  const minutes = parseInt(customTimer.value);
+  const seconds = isNaN(minutes) ? timerSeconds : minutes * 60;
   timer(seconds);
 });
 
@@ -72,12 +71,12 @@ resetBtn.addEventListener('click', () => {
 
 // Set the timer
 setTimerBtn.addEventListener('click', () => {
-  const minutes = parseInt(setMinutes.value);
-  if (!isNaN(minutes) && minutes > 0) {
+  const minutes = parseInt(customTimer.value);
+  if (!isNaN(minutes) && minutes >= 0) {
     timerSeconds = minutes * 60;
     displayTimeLeft(timerSeconds);
   } else {
-    alert('Please enter a positive number of minutes.');
+    alert('Please enter a valid number of minutes.');
   }
 });
 
