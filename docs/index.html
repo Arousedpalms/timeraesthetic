@@ -2,16 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Digital Clock Widget</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Themed Digital Clock Widget</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="widget-container">
-        <div id="clock" class="timer">00:00</div>
-        <button id="startButton">Start</button>
-        <button id="setTimerButton">Set Timer</button>
-        <!-- You can add more controls for setting the timer here -->
+        <!-- Digital clock display -->
+        <div id="clock" class="timer-display">00:00</div>
+
+        <!-- Progress bar -->
+        <div id="progressBarContainer" class="progress-bar-container">
+            <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <!-- Time input for setting custom timer -->
+        <input type="number" id="timeInput" placeholder="Enter time in minutes" min="1" class="time-input">
+
+        <!-- Timer control buttons -->
+        <button id="startStopButton" class="timer-btn">Start</button>
+        <button id="resetButton" class="timer-btn" disabled>Reset</button>
+
+        <!-- Preset timer buttons -->
+        <div class="preset-timers">
+            <button class="presetTimer" data-time="600">10 Min</button>
+            <button class="presetTimer" data-time="1200">20 Min</button>
+            <button class="presetTimer" data-time="1800">30 Min</button>
+        </div>
+
+        <!-- Settings menu for additional options -->
+        <select id="settingsMenu" class="settings-menu">
+            <option value="alarmSound1">Alarm Sound 1</option>
+            <option value="alarmSound2">Alarm Sound 2</option>
+            <!-- Additional settings can be added here -->
+        </select>
+
+        <!-- Time selector for hours, minutes, and seconds -->
+        <div class="time-selectors">
+            <select id="hoursSelector" class="time-selector">
+                <!-- Options ranging from 0 to 23 hours -->
+            </select>
+            <select id="minutesSelector" class="time-selector">
+                <!-- Options ranging from 0 to 59 minutes -->
+            </select>
+            <select id="secondsSelector" class="time-selector">
+                <!-- Options ranging from 0 to 59 seconds -->
+            </select>
+        </div>
+
+        <!-- Sound notification -->
+        <audio id="endTimerSound" src="path_to_your_alarm_sound.mp3" preload="auto"></audio>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
