@@ -3,34 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock Widget</title>
+    <title>Notion Clock Widget</title>
     <link rel="stylesheet" href="style.css">
+    <script src="clock.js" defer></script>
 </head>
 <body>
     <div id="clock-container">
-        <!-- Display for the timer -->
-        <div id="timer-display">
-            <span id="timer">00:00:00</span>
-        </div>
-
-        <!-- Timer controls -->
+        <div id="timer-display">00:10:00</div>
         <div id="timer-controls">
-            <button id="start-timer">Start</button>
-            <button id="stop-timer">Stop</button>
-            <button id="reset-timer">Reset</button>
+            <button id="start-timer-btn">Start</button>
+            <button id="pause-timer-btn">Pause</button>
+            <button id="reset-timer-btn">Reset</button>
         </div>
-
-        <!-- Set timer input -->
         <div id="set-timer">
-            <input type="number" id="set-minutes" placeholder="Minutes" min="0" max="60">
-            <input type="number" id="set-seconds" placeholder="Seconds" min="0" max="60">
+            <input type="text" id="minutes-input" placeholder="Minutes">
+            <input type="text" id="seconds-input" placeholder="Seconds">
             <button id="set-timer-btn">Set Timer</button>
         </div>
-
-        <!-- Audio element for alarm -->
-        <audio id="alarm-sound" src="love_alarm.mp3"></audio>
     </div>
-
-    <script src="clock.js"></script>
 </body>
 </html>
