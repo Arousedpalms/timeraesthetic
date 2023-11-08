@@ -1,74 +1,55 @@
-/* Main clock container styling */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #3C3C3C; /* A soft, dark grey */
+    color: #F5F5F5; /* A soft white for primary text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 #clock-container {
-    font-family: 'Times New Roman', serif; /* Similar font to match the theme */
-    background-color: #f8f8f8; /* Neutral background color */
-    color: #333; /* Dark text color for readability */
-    max-width: 350px; /* Adjust size as needed */
-    margin: 30px auto; /* Center the clock in the middle of the page */
+    border: 3px solid #6A5A55; /* A warm brown for the border */
+    border-radius: 10px;
     padding: 20px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: inset 0 0 10px #8B4513; /* Inset shadow for a beveled edge look */
-    border: 2px solid #8B4513; /* Brown border matching the calendar's theme */
+    background: #504A4B; /* A darker shade for the clock background */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Timer display styling */
 #timer-display {
-    font-size: 2em; /* Large font size for the timer */
-    margin-bottom: 20px; /* Spacing below the timer display */
+    color: #F5F5F5; /* The same soft white for the timer numbers */
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Timer control buttons styling */
-#timer-controls button {
-    background-color: #d3d3d3; /* Light grey background for buttons */
-    color: #333; /* Dark text for buttons */
+#timer-controls button,
+#set-timer button {
+    background-color: #AE9A86; /* A muted clay color for buttons */
+    color: #3C3C3C; /* Dark text for buttons */
     border: none;
     padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer; /* Cursor to pointer to indicate it's clickable */
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 1em;
-    border-radius: 5px; /* Slight rounding of corners on buttons */
+    margin: 5px;
+    transition: background-color 0.3s ease;
 }
 
-#timer-controls button:hover {
-    background-color: #c4c4c4; /* Slightly darker button on hover for feedback */
+#timer-controls button:hover,
+#set-timer button:hover {
+    background-color: #9E8C7A; /* A slightly darker shade for button hover */
 }
 
-/* Input fields styling */
 #set-timer input {
+    border: 2px solid #6A5A55; /* A warm brown border for the input */
     padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc; /* Light grey border for inputs */
-    border-radius: 5px; /* Slight rounding of corners on input fields */
+    border-radius: 5px;
+    margin-right: 5px;
+    font-family: 'Georgia', serif;
+    color: #3C3C3C;
 }
 
-/* Set timer button styling */
-#set-timer-btn {
-    background-color: #8B4513; /* Brown background to match the border */
-    color: white; /* White text for contrast */
-    padding: 10px 20px;
-    cursor: pointer; /* Cursor to pointer to indicate it's clickable */
-    border: none;
-    border-radius: 5px; /* Slight rounding of corners on the button */
-}
-
-#set-timer-btn:hover {
-    background-color: #7a3812; /* Slightly darker brown on hover for feedback */
-}
-
-/* Responsive design adjustments */
-@media (max-width: 600px) {
-    #clock-container {
-        width: 90%;
-    }
-
-    #timer-display {
-        font-size: 1.5em; /* Smaller font size on smaller screens */
-    }
-
-    #timer-controls button,
-    #set-timer input,
-    #set-timer-btn {
-        padding: 8px 16px;
-        font-size: 0.9em;
-    }
-}
+/* If additional styling for other elements is needed, continue below */
