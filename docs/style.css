@@ -1,113 +1,69 @@
-/* General reset for some element styles */
+/* Base styles to ensure consistency */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Times New Roman', Times, serif; /* Assuming a classic newspaper-like font */
-    background-color: #1a1a1a; /* Dark background */
-    color: #fff; /* White text */
+    font-family: 'Times New Roman', Times, serif; /* This font is similar to the one used in newspapers */
+    background-color: #f5f5f5; /* A neutral background */
+    color: #333; /* Dark text for high contrast */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.widget-container {
-    text-align: center;
     padding: 20px;
-    border-radius: 8px;
-    background-color: #333; /* Slightly lighter shade for the widget background */
 }
 
-.timer-display {
-    font-size: 3em;
-    margin-bottom: 20px;
-}
-
-.progress-bar-container {
+#clock-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    background-color: #555; /* Darker background for progress bar */
-    border-radius: 5px;
+    max-width: 400px;
+}
+
+#timer-display {
     margin-bottom: 20px;
 }
 
-.progress-bar {
-    height: 20px;
-    background-color: #f0ad4e; /* Progress bar color taken from Notion's theme */
-    width: 0%;
-    border-radius: 5px;
-    transition: width 0.5s ease-in-out;
+#timer {
+    font-size: 3em;
+    color: #5D534A; /* Color from the image palette */
 }
 
-.time-input,
-.timer-btn,
-.settings-menu,
-.time-selector {
-    padding: 10px;
+#timer-controls button,
+#set-timer button {
+    background-color: #D3C1AE; /* Lighter tone from the image palette */
+    color: white;
+    border: none;
+    padding: 10px 20px;
     margin: 5px;
-    border: 2px solid #f0ad4e; /* Border color to match progress bar */
     border-radius: 5px;
-    background-color: #222; /* Dark background for inputs and buttons */
-    color: #fff; /* White text for visibility */
-    font-size: 1em;
-}
-
-.time-input::placeholder {
-    color: #ddd; /* Lighter color for placeholder text */
-}
-
-.timer-btn:hover,
-.presetTimer:hover {
-    background-color: #f0ad4e; /* Highlight button on hover with Notion's theme color */
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.presetTimer {
-    padding: 5px 10px;
-    display: inline-block;
-    margin: 0 5px;
-    background-color: transparent;
-    border: 1px solid #f0ad4e;
+#timer-controls button:hover,
+#set-timer button:hover {
+    background-color: #B29F91; /* Darker tone for the hover state */
 }
 
-/* Disabling the reset button visually */
-#resetButton:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+#set-timer {
+    margin-top: 20px;
 }
 
-/* Style for settings menu */
-.settings-menu {
-    width: 200px; /* Set a fixed width */
-    display: block; /* To take full width */
-    margin: 10px auto; /* Centering it */
+#set-timer input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
 }
 
-/* Time selectors styling */
-.time-selectors {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.time-selector {
-    width: 60px; /* Fixed width for uniformity */
-    margin: 0 5px;
-}
-
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-    .timer-display {
-        font-size: 2em;
-    }
-
-    .progress-bar-container,
-    .time-input,
-    .settings-menu,
-    .time-selector {
-        width: 90%; /* Adjust width for smaller screens */
-    }
+/* Audio element is usually hidden */
+audio {
+    display: none;
 }
