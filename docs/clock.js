@@ -1,70 +1,85 @@
-document.addEventListener('DOMContentLoaded', () => {
-  let timer;
-  const startStopButton = document.getElementById('startStopButton');
-  const resetButton = document.getElementById('resetButton');
-  const progressBar = document.getElementById('progressBar');
-  const timeInput = document.getElementById('timeInput');
-  const endTimerSound = document.getElementById('endTimerSound');
+// Get the elements from the DOM
+const timerDisplay = document.getElementById('timer');
+const startBtn = document.getElementById('start-timer');
+const stopBtn = document.getElementById('stop-timer');
+const resetBtn = document.getElementById('reset-timer');
+const setTimerBtn = document.getElementById('set-timer-btn');
+const setMinutes = document.getElementById('set-minutes');
+const alarmSound = document.getElementById('alarmSound');
 
-  startStopButton.addEventListener('click', function() {
-    if (this.textContent === 'Start') {
-      const timeInSeconds = parseInt(timeInput.value) * 60;
-      if (timeInSeconds > 0) {
-        startTimer(timeInSeconds);
-        this.textContent = 'Stop';
-        resetButton.disabled = false;
-      } else {
-        alert('Please enter a valid number of minutes.');
-      }
-    } else {
-      stopTimer();
+let countdown;
+let timerSeconds = 0; // Timer set for 0 seconds initially
+
+function timer(seconds) {
+  // Clears any existing timers
+  clearInterval(countdown);
+
+  const now = Date.now();
+  const then = now + seconds * 1000;
+  displayTimeLeft(seconds); // to display the time immediately, not after 1 second
+
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((then - Date.now()) / 1000);
+
+    // Check if we should stop the timer
+    if (secondsLeft < 0) {
+      clearInterval(countdown);
+      playAlarm();
+      return;
     }
-  });
 
-  resetButton.addEventListener('click', resetTimer);
+    // Display the remaining time
+    displayTimeLeft(secondsLeft);
+  }, 1000);
+}
 
-  function startTimer(duration) {
-    let time = duration, minutes, seconds;
-    timer = setInterval(() => {
-      minutes = parseInt(time / 60, 10);
-      seconds = parseInt(time % 60, 10);
+function displayTimeLeft(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainderSeconds = seconds % 60;
+  const display = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+  timerDisplay.textContent = display;
+  document.title = display; // Also updates the tab title with the timer
+}
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+function playAlarm() {
+  alarmSound.play();
+}
 
-      updateDisplay(minutes, seconds);
-      updateProgressBar(duration, time);
+function stopAlarm() {
+  alarmSound.pause();
+  alarmSound.currentTime = 0; // Rewind to start
+}
 
-      if (--time < 0) {
-        endTimerSound.play();
-        stopTimer();
-        resetButton.disabled = true;
-        startStopButton.textContent = 'Start';
-      }
-    }, 1000);
-  }
+// Start the timer
+startBtn.addEventListener('click', () => {
+  const seconds = parseInt(setMinutes.value) * 60 || timerSeconds;
+  timer(seconds);
+});
 
-  function stopTimer() {
-    clearInterval(timer);
-    startStopButton.textContent = 'Start';
-  }
+// Stop the timer
+stopBtn.addEventListener('click', () => {
+  clearInterval(countdown);
+});
 
-  function resetTimer() {
-    stopTimer();
-    updateDisplay("00", "00");
-    progressBar.style.width = '0%';
-    startStopButton.textContent = 'Start';
-    resetButton.disabled = true;
-  }
+// Reset the timer
+resetBtn.addEventListener('click', () => {
+  clearInterval(countdown);
+  timerDisplay.textContent = '00:00:00';
+  document.title = 'Timer Reset';
+  timerSeconds = 0; // Reset the timer seconds
+});
 
-  function updateDisplay(minutes, seconds) {
-    // Update the display with the remaining time
-    const display = document.getElementById('clock');
-    display.textContent = minutes + ":" + seconds;
-  }
-
-  function updateProgressBar(totalDuration, timeLeft) {
-    const percentage = 100 - (timeLeft / totalDuration) * 100;
-    progressBar.style.width = percentage + '%';
+// Set the timer
+setTimerBtn.addEventListener('click', () => {
+  const minutes = parseInt(setMinutes.value);
+  if (!isNaN(minutes) && minutes > 0) {
+    timerSeconds = minutes * 60;
+    displayTimeLeft(timerSeconds);
+  } else {
+    alert('Please enter a positive number of minutes.');
   }
 });
+
+// Initially update the display
+displayTimeLeft(timerSeconds);
