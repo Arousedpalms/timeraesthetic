@@ -1,17 +1,20 @@
-function updateProgressBars() {
-  const now = new Date();
-  const startOfYear = new Date(now.getFullYear(), 0, 1);
-  const endOfYear = new Date(now.getFullYear() + 1, 0, 1);
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-  const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
-  const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 7));
-  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+// timer.js
+let timer = null;
+let elapsedTime = 0;
 
-  const yearProgress = (now - startOfYear) / (endOfYear - startOfYear);
-  const monthProgress = (now - startOfMonth) / (endOfMonth - startOfMonth);
-  const weekProgress = (now - startOfWeek) / (endOfWeek - startOfWeek);
-  const dayProgress = (now - startOfDay) / (endOfDay - startOfDay);
+function updateTimeDisplay() {
+  const seconds = Math.floor(elapsedTime % 60);
+  const minutes = Math.floor((elapsedTime / 60) % 60);
+  const hours = Math.floor(elapsedTime / 3600);
+  
+  document.getElementById('timer-display').textContent = 
+    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
 
-  document.getElementById('year-progress').style.width = `${(
+document.getElementById('start-button').addEventListener('click', () => {
+  if (timer === null) {
+    timer = setInterval(() => {
+      elapsedTime++;
+      updateTimeDisplay();
+    }, 1000);
+ 
